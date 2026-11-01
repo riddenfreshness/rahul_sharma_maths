@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul Sharma — Master of Mathematics</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['Courier New', 'Courier', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- MathJax CDN for LaTeX Math Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .academic-serif {
+            font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.5);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-[#fcfbf9] dark:bg-[#121212] text-[#2c2c2c] dark:text-[#e0e0e0] transition-colors duration-300 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation & Controls -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-[#fcfbf9]/80 dark:bg-[#121212]/80 border-b border-stone-200 dark:border-stone-800">
+        <div class="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#about" class="font-semibold text-lg tracking-tight academic-serif hover:opacity-80 transition-opacity">
+                R. Sharma
+            </a>
+            
+            <nav class="hidden sm:flex items-center space-x-5 text-sm font-medium text-stone-600 dark:text-stone-400">
+                <a href="#about" class="hover:text-stone-900 dark:hover:text-stone-100 transition-colors">About</a>
+                <a href="#research" class="hover:text-stone-900 dark:hover:text-stone-100 transition-colors">Research</a>
+                <a href="#cv" class="hover:text-stone-900 dark:hover:text-stone-100 transition-colors">CV</a>
+                <a href="#contact" class="hover:text-stone-900 dark:hover:text-stone-100 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-lg bg-stone-200/60 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:bg-stone-300 dark:hover:bg-stone-700 transition-colors">
+                    <!-- Sun icon -->
+                    <svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <!-- Moon icon -->
+                    <svg id="theme-icon-moon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+                </button>
+                
+                <!-- Mobile menu toggle -->
+                <button id="mobile-menu-button" class="sm:hidden p-2 rounded-lg bg-stone-200/60 dark:bg-stone-800 text-stone-700 dark:text-stone-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden sm:hidden border-b border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-[#181818] px-6 py-4 space-y-3 text-sm">
+            <a href="#about" class="block text-stone-600 dark:text-stone-300">About</a>
+            <a href="#research" class="block text-stone-600 dark:text-stone-300">Research & Projects</a>
+            <a href="#cv" class="block text-stone-600 dark:text-stone-300">Curriculum Vitae</a>
+            <a href="#contact" class="block text-stone-600 dark:text-stone-300">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-6 py-12 space-y-16 flex-grow w-full">
+
+        <!-- 1. Header / Intro Section -->
+        <section id="about" class="space-y-6 pt-4">
+            <div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-6">
+                <div class="space-y-3 flex-1">
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight academic-serif">Rahul Sharma</h1>
+                    <p class="text-stone-600 dark:text-stone-400 font-medium leading-relaxed">
+                        M.Math student at <span class="text-stone-900 dark:text-stone-200 font-semibold">Indian Statistical Institute (ISI), Bangalore</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="prose dark:prose-invert text-stone-700 dark:text-stone-300 space-y-4 text-sm sm:text-base leading-relaxed">
+                <p>
+                    Welcome to my personal webpage. My mathematical interests primarily lie in analytic number theory and homogeneous dynamical systems. I also enjoy exploring deep connections between arithmetic geometry and analytic techniques.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Research & Projects Section -->
+        <section id="research" class="space-y-6">
+            <div class="border-b border-stone-200 dark:border-stone-800 pb-2">
+                <h2 class="text-xl font-bold tracking-tight academic-serif">Research & Projects</h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Project 1 -->
+                <div class="p-5 rounded-xl border border-stone-200/80 dark:border-stone-800 bg-white/50 dark:bg-[#181818]/50 hover:border-stone-300 dark:hover:border-stone-700 transition-all space-y-3 shadow-xs">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                        <h3 class="font-semibold text-stone-900 dark:text-stone-100">Representation Theory of Finite Groups & Lie Algebras</h3>
+                        <span class="text-xs text-stone-500 font-mono">Summer 2026</span>
+                    </div>
+                    <p class="text-xs font-mono text-stone-500 dark:text-stone-400">Reading Project at IIT Delhi • Mentored by Dr. Pinakinath Saha</p>
+                    <p class="text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                       Studied finite group representation and character theory, Lie algebra structure and semisimplicity, and the classification of root systems via Weyl groups, Cartan matrices, and Dynkin diagrams.
+                    </p>
+                    <div class="flex gap-2 pt-1">
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-mono">Lie Algebras</span>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-mono">Character Theory</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CV Section -->
+        <section id="cv" class="space-y-6">
+            <div class="border-b border-stone-200 dark:border-stone-800 pb-2 flex items-center justify-between">
+                <h2 class="text-xl font-bold tracking-tight academic-serif">Curriculum Vitae</h2>
+                <a href="https://www.dropbox.com/scl/fi/qveutok5e940wwhqlkdf2/CV.pdf?rlkey=le1rblzf9fwol8buxl5hz6kre&st=a8sgxada&dl=0" target="_blank" class="text-xs font-mono underline text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200">PDF</a>
+            </div>
+
+            <div class="space-y-6 text-sm">
+                <!-- Education -->
+                <div>
+                    <h3 class="font-semibold text-stone-900 dark:text-stone-100 mb-3 uppercase tracking-wider text-xs text-stone-500 font-mono">Education</h3>
+                    <div class="space-y-3">
+                        <div class="flex flex-col sm:flex-row sm:justify-between">
+                            <div>
+                                <p class="font-medium">Master of Mathematics (M.Math)</p>
+                                <p class="text-stone-500 text-xs">Indian Statistical Institute (ISI), Bangalore</p>
+                            </div>
+                            <span class="text-xs text-stone-500 font-mono">2025 – 2027 (Expected) </span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:justify-between">
+                            <div>
+                                <p class="font-medium">B.Sc (Hons.) Mathematics</p>
+                                <p class="text-stone-500 text-xs">Shaheed Bhagat Singh College, University of Delhi</p>
+                            </div>
+                            <span class="text-xs text-stone-500 font-mono">2021 – 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- Properly closed CV section -->
+
+        <!-- 4. Mathematical Talks -->
+        <section id="talks" class="space-y-6">
+            <div class="border-b border-stone-200 dark:border-stone-800 pb-2">
+                <h2 class="text-xl font-bold tracking-tight academic-serif">Mathematical Talks</h2>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div class="p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/50 dark:bg-[#181818]/50 space-y-1">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-semibold text-stone-900 dark:text-stone-100">Majorization and Doubly Stochastic Matrices</h3>
+                        <span class="text-xs font-mono text-stone-500">2025</span>
+                    </div>
+                    <p class="text-xs text-stone-500 font-mono">Linear Algebra Course, ISI Bangalore</p>
+                    <p class="text-stone-600 dark:text-stone-300 pt-1">Introduction to Majorization theory and its relation to doubly stochastic matrices and inequalities.</p>
+                </div>
+
+                <div class="p-4 rounded-xl border border-stone-200 dark:border-stone-800 bg-white/50 dark:bg-[#181818]/50 space-y-1">
+                    <div class="flex justify-between items-baseline">
+                        <h3 class="font-semibold text-stone-900 dark:text-stone-100">Bull Trap and Market Dynamics</h3>
+                        <span class="text-xs font-mono text-stone-500">2024</span>
+                    </div>
+                    <p class="text-xs text-stone-500 font-mono">Mathematical Finance Course, University of Delhi</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Fellowships & Achievements -->
+        <section id="honors" class="space-y-6">
+            <div class="border-b border-stone-200 dark:border-stone-800 pb-2">
+                <h2 class="text-xl font-bold tracking-tight academic-serif">Fellowships & Achievements</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+                <div class="space-y-3">
+                    <h3 class="text-xs uppercase font-mono tracking-wider text-stone-500 font-semibold">Fellowships & Awards</h3>
+                    <ul class="space-y-2 text-stone-700 dark:text-stone-300">
+                        <li><span class="font-mono text-xs text-stone-500">2025–2027:</span> ISI M.Math Stipend</li>
+                        <li><span class="font-mono text-xs text-stone-500">2021–2024:</span> Central Sector Scheme Scholarship</li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="text-xs uppercase font-mono tracking-wider text-stone-500 font-semibold">National Achievements</h3>
+                    <ul class="space-y-2 text-stone-700 dark:text-stone-300">
+                        <li><span class="font-mono text-xs text-stone-500">AIR 21:</span> ISI M.Math Entrance (2025)</li>
+                        <li><span class="font-mono text-xs text-stone-500">AIR 99:</span> IIT JAM Mathematics (2025)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Contact & References -->
+        <section id="contact" class="space-y-6 pt-4 pb-12">
+            <div class="border-b border-stone-200 dark:border-stone-800 pb-2">
+                <h2 class="text-xl font-bold tracking-tight academic-serif">Contact & References</h2>
+            </div>
+
+            <p class="text-sm text-stone-600 dark:text-stone-400">
+                Feel free to reach out via institutional email for academic inquiries, collaboration, or discussion notes.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <a href="mailto:mmat2518@isibang.ac.in" class="p-3 rounded-lg border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 transition-colors flex items-center space-x-3 bg-white/40 dark:bg-[#181818]/40">
+                    <span class="font-mono text-xs text-stone-400">EMAIL</span>
+                    <span class="font-medium truncate">mmat2518@isibang.ac.in</span>
+                </a>
+                <a href="https://sites.google.com/view/pinakinath" target="_blank" class="p-3 rounded-lg border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 transition-colors flex items-center space-x-3 bg-white/40 dark:bg-[#181818]/40">
+                    <span class="font-mono text-xs text-stone-400">REF</span>
+                    <span class="font-medium">Dr. Pinakinath Saha (IIT Delhi)</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-stone-200 dark:border-stone-800 py-8 bg-stone-100/50 dark:bg-[#151515]">
+        <div class="max-w-3xl mx-auto px-6 text-center text-xs text-stone-500 font-mono space-y-2">
+            <p>© 2026 Rahul Sharma. Built with minimalist HTML & Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <!-- Script for Theme Toggle & Mobile Menu -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
